@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Địa Chỉ Giao Hàng</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .logo {
+            margin-right: 20px;
+        }
+
+        .search-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+
+            .search-container input {
+                width: 40%;
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                margin-bottom: 5px;
+            }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            margin-left: 15px;
+        }
+
+            .nav-links a {
+                margin-left: 15px;
+                text-decoration: none;
+                color: #28a745;
+                font-weight: bold;
+            }
+
+        .cart-icon {
+            margin-left: 15px;
+        }
+
+        .delivery {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #555;
+            text-align: right;
+        }
+
+        h2 {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .note {
+            text-align: left;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .instruction {
+            font-size: 14px;
+            color: #888;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input[type="text"], input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+            button:hover {
+                background-color: #e7f3ff;
+            }
+
+        .cancel-button {
+            background-color: #fff;
+        }
+
+            .cancel-button:hover {
+                background-color: #c82333;
+            }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .address-form {
+            background-color: #e7f3ff;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .error {
+            color: red;
+            display: none; /* Ẩn thông báo lỗi mặc định */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="" alt="Logo Tiki" width="150">
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="Tìm kiếm sản phẩm">
+                <div class="nav-links">
+                    <img src="https://fontawesome.com/icons/house?f=classic&s=solid" alt="Trang chủ" width="30" class="home-icon" ">
+                    <img src="https://fontawesome.com/icons/user?f=classic&s=solid" alt="Tài khoản" width="30" class="account-icon" ">
+                    <img src="https://fontawesome.com/icons/cart-shopping?f=classic&s=solid" alt="Giỏ hàng" width="30" class="cart-icon">
+                </div>
+            </div>
+        </div>
+        <div class="delivery">Giao đến</div>
+        <h2>Địa Chỉ Giao Hàng</h2>
+        <div class="note">Bạn muốn giao hàng đến địa chỉ khác</div>
+        <div class="address-form">
+            <form>
+
+                <label>Quận/Huyện:</label>
+                <input type="text" id="district" name="district" required>
+
+                <label>Thành phố:</label>
+                <input type="text" id="city" name="city" required>
+
+                <label>Địa chỉ:</label>
+                <input type="text" id="address" name="address" required>
+
+                <label>Số điện thoại:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <div class="instruction">Để nhận hàng thuận tiện hơn, vui lòng cho biết loại địa chỉ</div>
+
+                <div class="address-type">
+                    <label>
+                        <input type="radio" name="addressType" value="home" required> Nhà riêng
+                    </label>
+                    <label>
+                        <input type="radio" name="addressType" value="apartment"> Chung cư
+                    </label>
+                    <label>
+                        <input type="radio" name="addressType" value="office"> Cơ quan/Công ty
+                    </label>
+                </div>
+
+                <label>
+                    <input type="checkbox" name="useCurrentAddress"> Sử dụng địa chỉ hiện tại
+                </label>
+
+                <div class="action-buttons">
+                    <button type="button" class="cancel-button">Hủy Bỏ</button>
+                    <button type="submit">Giao đến địa chỉ này</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function (event)
+        {
+            event.preventDefault();
+
+            const envInput = document.getElementById('env').value;
+            const errorMessage = document.getElementById('lỗi ');
+
+            const regex = /^[a-zA-Z0-9]+$/;
+
+            if (!regex.test(envInput))
+            {
+                errorMessage.style.display = 'block';
+            } else
+            {
+                errorMessage.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
